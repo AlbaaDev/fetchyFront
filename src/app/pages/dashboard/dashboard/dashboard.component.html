@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav class="side-nav" mode="side" opened>
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="['twitter']" routerLinkActive="active">Twitter</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="['instagram']" routerLinkActive="active">Instagram</button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-button [routerLink]="['facebook']" routerLinkActive="active">Facebook</button>
+            </mat-list-item>
+          </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <!-- <app-header></app-header> -->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
