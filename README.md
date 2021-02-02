@@ -1,5 +1,5 @@
 # fetchyFront
-Techno : Angular 9.
+Front-end for the fetchy app which find trending products online for marketplaces
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
 
 ## Development server
