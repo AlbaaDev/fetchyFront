@@ -1,6 +1,5 @@
 import { AuthService } from './services/auth.service';
-import { Component, AfterContentInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,6 @@ export class AppComponent {
   title = 'fetchyFront';
   constructor(private authService: AuthService) {  }
   isAuth() {
-    return this.authService.isAuth();
+    return this.authService.loggedIn();
   }
 }

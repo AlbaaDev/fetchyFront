@@ -15,16 +15,18 @@ export class HeaderComponent implements OnInit {
               private sideNavService: SidenavService,
               ) { }
 
-  isAuth() {
-    return this.authService.isAuth();
+  ngOnInit(): void {
   }
+
+  isAuth() {
+    return this.authService.loggedIn();
+  }
+
   clickMenu() {
     this.sideNavService.toggle();
   }
-  ngOnInit(): void {
-  }
+
   logout() {
     this.authService.logout();
-    this.router.navigateByUrl('/home');
   }
 }

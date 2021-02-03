@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit(): void { }
   isAuth() {
-    return this.authService.isAuth();
+    return this.authService.loggedIn();
   }
 
 }
