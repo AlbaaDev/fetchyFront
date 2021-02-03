@@ -1,5 +1,5 @@
 # fetchyFront
-Front-end for the fetchy app which find trending products online for marketplaces
+Fetchy allows you to find new emerging markets and products by analyzing social media platforms and market places.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
 
 ## Development server
