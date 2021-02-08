@@ -9,9 +9,7 @@ import { User } from '../models/user';
 export class AuthService {
   isAuthenticated: boolean = false;
 
-  constructor(private router: Router, private http: HttpClient) {
-    
-  }
+  constructor(private router: Router, private http: HttpClient) {}
 
   login(email: string, password: string) {
     if (!this.loggedIn()) {

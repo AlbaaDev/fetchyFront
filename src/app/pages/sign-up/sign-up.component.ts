@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MustMatch } from "src/app/validators/MustMatch";
+import { AuthService } from 'src/app/services/auth.service';
 
 export class ConfirmPasswordStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -23,28 +25,37 @@ export const passwordMatchValidator: ValidatorFn = (control: FormGroup): Validat
 })
 export class SignUpComponent implements OnInit {
   passwordsMatcher = new ConfirmPasswordStateMatcher();
+  submited = false;
   hide  = true;
   hide2 = true;
   signUpForm: FormGroup;
-  constructor(private router: Router, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private authService: AuthService, 
+              private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
-    }, { validator: passwordMatchValidator });
-  }
-  // passwordMatchValidator(form: FormGroup) {
-  //   return form.get('password').value === form.get('confirmPassword').value ? null : {mismatch: true};
-  // }
-  ngOnInit(): void {
-  }
-  onSubmit() {
+      acceptTerms: [false, Validators.requiredTrue]
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    });
   }
 
-  get firstName() { return this.signUpForm.get('firstName'); }
-  get lastName() { return this.signUpForm.get('lastName'); }
+  onSubmit() {
+    this.submited = true;
+    if(this.signUpForm.invalid) {
+      console.log("form invalid");
+      return;
+    }
+    var email = this.signUpForm.get('email').value;
+    var password = this.signUpForm.get('password').value;
+    this.authService.register(email, password);
+  }
+
+  get f() { return this.signUpForm.controls; }
   get email() { return this.signUpForm.get('email'); }
   get password() { return this.signUpForm.get('password'); }
   get confirmPassword() { return this.signUpForm.get('confirmPassword'); }

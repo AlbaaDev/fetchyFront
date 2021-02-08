@@ -33,7 +33,7 @@ export class InstagramComponent implements OnInit {
     this.setTimeFormat();
     this.buildChart();
     this.mouseOver();
-    this.getStockData();
+    // this.getStockData();
   }
   onSubmit() {
     return true;
@@ -149,8 +149,8 @@ export class InstagramComponent implements OnInit {
         return ;
     }
   }
-  private getStockData() {
-    return this.http.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo')
-                    .subscribe((data: any) => console.log(data));
-  }
+  // private getStockData() {
+  //   return this.http.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo')
+  //                   .subscribe((data: any) => console.log(data));
+  // }
 }
